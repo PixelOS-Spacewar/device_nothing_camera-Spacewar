@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exceptions>
+    <exception package="com.nothing.camera">
+        <permission name="android.permission.READ_MEDIA_IMAGES" fixed="true" />
+        <permission name="android.permission.READ_MEDIA_VIDEO" fixed="true" />
+    </exception>
+</exceptions>
