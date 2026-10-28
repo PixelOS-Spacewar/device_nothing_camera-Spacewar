@@ -1,0 +1,86 @@
+--- a/smali_classes2/com/nothing/common/remoteconfig/NTCameraConfigGrabber.smali
++++ b/smali_classes2/com/nothing/common/remoteconfig/NTCameraConfigGrabber.smali
+@@ -94,78 +94,21 @@
+ .method public grabConfig(Landroid/content/Context;)Lorg/json/JSONArray;
+     .locals 1
+ 
+-    .line 79
+-    new-instance p0, Lcom/nothing/sdk/onlineconfig/ConfigGrabber;
++    new-instance v0, Lorg/json/JSONArray;
+ 
+-    sget-object v0, Lcom/nothing/common/remoteconfig/NTCameraConfigGrabber;->NTCAMERA_CONFIG_NAME:Ljava/lang/String;
++    invoke-direct {v0}, Lorg/json/JSONArray;-><init>()V
+ 
+-    invoke-direct {p0, p1, v0}, Lcom/nothing/sdk/onlineconfig/ConfigGrabber;-><init>(Landroid/content/Context;Ljava/lang/String;)V
+-
+-    .line 80
+-    invoke-virtual {p0}, Lcom/nothing/sdk/onlineconfig/ConfigGrabber;->grabConfig()Lorg/json/JSONArray;
+-
+-    move-result-object p0
+-
+-    return-object p0
++    return-object v0
+ .end method
+ 
+ .method public registerObserver(Landroid/content/Context;)V
+-    .locals 4
+-
+-    const-string v0, "NTCameraConfigGrabber"
+-
+-    const-string v1, "registerObserver"
+-
+-    .line 64
+-    invoke-static {v0, v1}, Lcom/nothing/common/utils/LogUtil;->i(Ljava/lang/String;Ljava/lang/String;)V
+-
+-    .line 65
+-    iget-object v0, p0, Lcom/nothing/common/remoteconfig/NTCameraConfigGrabber;->configObserver:Lcom/nothing/sdk/onlineconfig/ConfigObserver;
+-
+-    if-nez v0, :cond_0
+-
+-    .line 66
+-    new-instance v0, Lcom/nothing/sdk/onlineconfig/ConfigObserver;
+-
+-    new-instance v1, Landroid/os/Handler;
+-
+-    invoke-direct {v1}, Landroid/os/Handler;-><init>()V
+-
+-    iget-object v2, p0, Lcom/nothing/common/remoteconfig/NTCameraConfigGrabber;->configUpdate:Lcom/nothing/sdk/onlineconfig/ConfigObserver$ConfigUpdater;
+-
+-    sget-object v3, Lcom/nothing/common/remoteconfig/NTCameraConfigGrabber;->NTCAMERA_CONFIG_NAME:Ljava/lang/String;
+-
+-    invoke-direct {v0, p1, v1, v2, v3}, Lcom/nothing/sdk/onlineconfig/ConfigObserver;-><init>(Landroid/content/Context;Landroid/os/Handler;Lcom/nothing/sdk/onlineconfig/ConfigObserver$ConfigUpdater;Ljava/lang/String;)V
+-
+-    iput-object v0, p0, Lcom/nothing/common/remoteconfig/NTCameraConfigGrabber;->configObserver:Lcom/nothing/sdk/onlineconfig/ConfigObserver;
+-
+-    .line 68
+-    :cond_0
+-    iget-object p0, p0, Lcom/nothing/common/remoteconfig/NTCameraConfigGrabber;->configObserver:Lcom/nothing/sdk/onlineconfig/ConfigObserver;
+-
+-    invoke-virtual {p0}, Lcom/nothing/sdk/onlineconfig/ConfigObserver;->register()V
++    .locals 0
+ 
+     return-void
+ .end method
+ 
+ .method public unregisterObserver()V
+-    .locals 2
++    .locals 0
+ 
+-    const-string v0, "NTCameraConfigGrabber"
+-
+-    const-string v1, "unregisterObserver"
+-
+-    .line 72
+-    invoke-static {v0, v1}, Lcom/nothing/common/utils/LogUtil;->i(Ljava/lang/String;Ljava/lang/String;)V
+-
+-    .line 73
+-    iget-object p0, p0, Lcom/nothing/common/remoteconfig/NTCameraConfigGrabber;->configObserver:Lcom/nothing/sdk/onlineconfig/ConfigObserver;
+-
+-    if-eqz p0, :cond_0
+-
+-    .line 74
+-    invoke-virtual {p0}, Lcom/nothing/sdk/onlineconfig/ConfigObserver;->unregister()V
+-
+-    :cond_0
+     return-void
+ .end method

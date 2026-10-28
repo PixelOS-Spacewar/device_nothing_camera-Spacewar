@@ -1,0 +1,42 @@
+--- a/smali_classes2/com/nothing/common/utils/ProductConfig.smali
++++ b/smali_classes2/com/nothing/common/utils/ProductConfig.smali
+@@ -4188,35 +4188,10 @@
+ .end method
+ 
+ .method private static isPlatformSupportOfflineLib()Z
+-    .locals 2
+-
+-    .line 813
+-    new-instance v0, Ljava/io/File;
+-
+-    const-string v1, "/system_ext/lib/libofflineproc_jni.so"
+-
+-    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+-
+-    .line 814
+-    invoke-virtual {v0}, Ljava/io/File;->exists()Z
+-
+-    move-result v0
+-
+-    if-nez v0, :cond_0
+-
+-    .line 816
+-    new-instance v0, Ljava/io/File;
+-
+-    const-string v1, "/system/lib/libofflineproc_jni.so"
+-
+-    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+-
+-    .line 817
+-    invoke-virtual {v0}, Ljava/io/File;->exists()Z
+-
+-    move-result v0
+-
+-    :cond_0
++    .locals 1
++
++    const/4 v0, 0x0
++
+     return v0
+ .end method
+ 
