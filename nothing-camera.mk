@@ -13,6 +13,8 @@
 # limitations under the License.
 
 # Camera
+$(call soong_config_set,camera,package_name,com.nothing.device.package_name)
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/NTCamera-google-permissions.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/NTCamera-google-permissions.xml \
     $(LOCAL_PATH)/configs/default-permissions-NTCamera.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/default-permissions/default-permissions-NTCamera.xml \
