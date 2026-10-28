@@ -26,6 +26,9 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.vendor.camera.privapp.list=com.nothing.camera \
     ro.com.google.lens.oem_camera_package=com.nothing.camera \
     vendor.camera.aux.packagelist=com.nothing.camera
+
+# SEPolicy
+include $(LOCAL_PATH)/sepolicy/SEPolicy.mk
     
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
