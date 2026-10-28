@@ -27,5 +27,9 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.com.google.lens.oem_camera_package=com.nothing.camera \
     vendor.camera.aux.packagelist=com.nothing.camera
     
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH)
+
 # Vendor
 $(call inherit-product, vendor/nothing/camera-Spacewar/camera-Spacewar-vendor.mk)
