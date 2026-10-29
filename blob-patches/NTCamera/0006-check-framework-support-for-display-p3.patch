@@ -1,0 +1,94 @@
+--- a/smali_classes2/com/nothing/common/utils/ProductConfig.smali
++++ b/smali_classes2/com/nothing/common/utils/ProductConfig.smali
+@@ -1708,10 +1708,8 @@
+ 
+     sput-boolean v1, Lcom/nothing/common/utils/ProductConfig;->isEnableUltraHdr:Z
+ 
+-    const-string v1, "com.nothing.camera.display.p3"
+-
+     .line 257
+-    invoke-static {v1, v2}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
++    invoke-static {}, Lcom/nothing/common/utils/ProductConfig;->isDisplayP3Supported()Z
+ 
+     move-result v1
+ 
+@@ -3857,6 +3855,79 @@
+     return p0
+ .end method
+ 
++.method private static isDisplayP3Supported()Z
++    .locals 5
++
++    const-string v0, "com.nothing.camera.display.p3"
++
++    const/4 v1, 0x1
++
++    invoke-static {v0, v1}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
++
++    move-result v0
++
++    if-nez v0, :cond_0
++
++    return v0
++
++    :cond_0
++    :try_start_0
++    const-class v0, Landroid/graphics/YuvImage;
++
++    const-string v1, "rewriteIccProfile"
++
++    const/4 v2, 0x6
++
++    new-array v2, v2, [Ljava/lang/Class;
++
++    const-class v3, [B
++
++    const/4 v4, 0x0
++
++    aput-object v3, v2, v4
++
++    const-class v3, Landroid/graphics/ColorSpace;
++
++    const/4 v4, 0x1
++
++    aput-object v3, v2, v4
++
++    sget-object v3, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
++
++    const/4 v4, 0x2
++
++    aput-object v3, v2, v4
++
++    const/4 v4, 0x3
++
++    aput-object v3, v2, v4
++
++    const/4 v4, 0x4
++
++    aput-object v3, v2, v4
++
++    const-class v3, Ljava/io/OutputStream;
++
++    const/4 v4, 0x5
++
++    aput-object v3, v2, v4
++
++    invoke-virtual {v0, v1, v2}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
++    :try_end_0
++    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
++
++    const/4 v0, 0x1
++
++    return v0
++
++    :catch_0
++    move-exception v0
++
++    const/4 v0, 0x0
++
++    return v0
++.end method
++
+ .method public static isFlashRatioOff()Z
+     .locals 2
+ 

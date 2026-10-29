@@ -1,0 +1,185 @@
+--- /dev/null
++++ b/smali_classes2/com/nothing/cameracore/context/module/HighSpeedPreview.smali
+@@ -0,0 +1,156 @@
++.class public final Lcom/nothing/cameracore/context/module/HighSpeedPreview;
++.super Ljava/lang/Object;
++.source "HighSpeedPreview.java"
++
++
++# direct methods
++.method public static smooth(Ljava/util/List;)Ljava/util/List;
++    .locals 6
++
++    invoke-interface {p0}, Ljava/util/List;->size()I
++
++    move-result v0
++
++    const/4 v1, 0x4
++
++    if-ne v0, v1, :cond_2
++
++    const/4 v0, 0x0
++
++    invoke-interface {p0, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
++
++    move-result-object v1
++
++    check-cast v1, Landroid/hardware/camera2/CaptureRequest;
++
++    sget-object v2, Landroid/hardware/camera2/CaptureRequest;->CONTROL_AE_TARGET_FPS_RANGE:Landroid/hardware/camera2/CaptureRequest$Key;
++
++    invoke-virtual {v1, v2}, Landroid/hardware/camera2/CaptureRequest;->get(Landroid/hardware/camera2/CaptureRequest$Key;)Ljava/lang/Object;
++
++    move-result-object v2
++
++    check-cast v2, Landroid/util/Range;
++
++    if-eqz v2, :cond_2
++
++    invoke-virtual {v2}, Landroid/util/Range;->getLower()Ljava/lang/Comparable;
++
++    move-result-object v3
++
++    check-cast v3, Ljava/lang/Integer;
++
++    invoke-virtual {v3}, Ljava/lang/Integer;->intValue()I
++
++    move-result v3
++
++    const/16 v4, 0x78
++
++    if-ne v3, v4, :cond_2
++
++    invoke-virtual {v2}, Landroid/util/Range;->getUpper()Ljava/lang/Comparable;
++
++    move-result-object v3
++
++    check-cast v3, Ljava/lang/Integer;
++
++    invoke-virtual {v3}, Ljava/lang/Integer;->intValue()I
++
++    move-result v3
++
++    if-ne v3, v4, :cond_2
++
++    invoke-virtual {v1}, Landroid/hardware/camera2/CaptureRequest;->getTargets()Ljava/util/Collection;
++
++    move-result-object v4
++
++    invoke-interface {v4}, Ljava/util/Collection;->size()I
++
++    move-result v3
++
++    const/4 v5, 0x2
++
++    if-ne v3, v5, :cond_2
++
++    const/4 v3, 0x1
++
++    invoke-interface {p0, v3}, Ljava/util/List;->get(I)Ljava/lang/Object;
++
++    move-result-object v2
++
++    check-cast v2, Landroid/hardware/camera2/CaptureRequest;
++
++    invoke-virtual {v2}, Landroid/hardware/camera2/CaptureRequest;->getTargets()Ljava/util/Collection;
++
++    move-result-object v2
++
++    invoke-interface {v2}, Ljava/util/Collection;->size()I
++
++    move-result v5
++
++    if-ne v5, v3, :cond_2
++
++    invoke-interface {v4, v2}, Ljava/util/Collection;->containsAll(Ljava/util/Collection;)Z
++
++    move-result v5
++
++    if-eqz v5, :cond_2
++
++    const/4 v3, 0x2
++
++    :cond_0
++    invoke-interface {p0, v3}, Ljava/util/List;->get(I)Ljava/lang/Object;
++
++    move-result-object v4
++
++    check-cast v4, Landroid/hardware/camera2/CaptureRequest;
++
++    invoke-virtual {v4}, Landroid/hardware/camera2/CaptureRequest;->getTargets()Ljava/util/Collection;
++
++    move-result-object v4
++
++    invoke-interface {v4}, Ljava/util/Collection;->size()I
++
++    move-result v5
++
++    const/4 v0, 0x1
++
++    if-ne v5, v0, :cond_2
++
++    invoke-interface {v2, v4}, Ljava/util/Collection;->containsAll(Ljava/util/Collection;)Z
++
++    move-result v5
++
++    if-eqz v5, :cond_2
++
++    add-int/lit8 v3, v3, 0x1
++
++    const/4 v5, 0x4
++
++    if-lt v3, v5, :cond_0
++
++    new-instance v0, Ljava/util/ArrayList;
++
++    invoke-direct {v0, p0}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
++
++    const/4 v3, 0x1
++
++    const/4 v2, 0x4
++
++    :cond_1
++    invoke-interface {v0, v3, v1}, Ljava/util/List;->set(ILjava/lang/Object;)Ljava/lang/Object;
++
++    add-int/lit8 v3, v3, 0x1
++
++    if-lt v3, v2, :cond_1
++
++    const-string v3, "HighSpeedPreview"
++
++    const-string v4, "Requested preview on every 120 fps combined-buffer request"
++
++    invoke-static {v3, v4}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
++
++    return-object v0
++
++    :cond_2
++    return-object p0
++.end method
+--- a/smali_classes2/com/nothing/cameracore/context/module/ModuleContext.smali
++++ b/smali_classes2/com/nothing/cameracore/context/module/ModuleContext.smali
+@@ -2923,6 +2923,10 @@
+ 
+     move-result-object p1
+ 
++    invoke-static {p1}, Lcom/nothing/cameracore/context/module/HighSpeedPreview;->smooth(Ljava/util/List;)Ljava/util/List;
++
++    move-result-object p1
++
+     .line 1121
+     iget-object v1, p0, Lcom/nothing/cameracore/context/module/ModuleContext;->mCaptureSession:Landroid/hardware/camera2/CameraCaptureSession;
+ 
+--- a/smali_classes2/com/nothing/cameracore/context/module/feature/aeafawb/AeAfAwbManager$2.smali
++++ b/smali_classes2/com/nothing/cameracore/context/module/feature/aeafawb/AeAfAwbManager$2.smali
+@@ -208,6 +208,10 @@
+ 
+     move-result-object v1
+ 
++    invoke-static {v1}, Lcom/nothing/cameracore/context/module/HighSpeedPreview;->smooth(Ljava/util/List;)Ljava/util/List;
++
++    move-result-object v1
++
+     .line 1023
+     iget-object v3, p0, Lcom/nothing/cameracore/context/module/feature/aeafawb/AeAfAwbManager$2;->this$0:Lcom/nothing/cameracore/context/module/feature/aeafawb/AeAfAwbManager;
+ 
