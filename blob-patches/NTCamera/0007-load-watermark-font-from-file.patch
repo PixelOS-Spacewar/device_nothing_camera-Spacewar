@@ -1,0 +1,15 @@
+--- a/smali_classes2/com/nothing/common/utils/ContextUtil.smali
++++ b/smali_classes2/com/nothing/common/utils/ContextUtil.smali
+@@ -374,10 +374,10 @@
+ 
+     sput-object p0, Lcom/nothing/common/utils/ContextUtil;->sLightTypeface:Landroid/graphics/Typeface;
+ 
+-    const-string p0, "NDot55"
++    const-string p0, "/system/fonts/NDot55Caps.otf"
+ 
+     .line 51
+-    invoke-static {p0, v1}, Landroid/graphics/Typeface;->create(Ljava/lang/String;I)Landroid/graphics/Typeface;
++    invoke-static {p0}, Landroid/graphics/Typeface;->createFromFile(Ljava/lang/String;)Landroid/graphics/Typeface;
+ 
+     move-result-object p0
+ 

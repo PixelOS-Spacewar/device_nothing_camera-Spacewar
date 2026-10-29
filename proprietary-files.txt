@@ -5,3 +5,6 @@ system/lib64/libnelib.so
 system_ext/etc/permissions/com.nothing.feature.xml
 system_ext/priv-app/NothingExperience/NothingExperience.apk
 vendor/system/priv-app/NTCamera/NTCamera.apk:system/priv-app/NTCamera/NTCamera.apk;OVERRIDES=Camera2,GoogleCameraGo,Aperture
+
+# Camera fonts
+system/fonts/NDot55Caps.otf
